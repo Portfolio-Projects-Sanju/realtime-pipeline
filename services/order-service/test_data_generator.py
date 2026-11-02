@@ -79,6 +79,7 @@ class TestDataGenerator(unittest.TestCase):
 
     def test_percentiles_and_legacy_csv_migration(self):
         stats = data_generator.TrafficStats()
+        stats.start_monotonic -= 1  # Ensure a measurable duration even on fast CI runners.
         for latency in (0.01, 0.02, 0.03, 0.04):
             stats.record("success", latency)
         with tempfile.TemporaryDirectory() as directory:
