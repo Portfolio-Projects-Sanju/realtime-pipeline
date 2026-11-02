@@ -14,6 +14,7 @@ import redpanda_interruption
 import consumer_recovery
 import clickhouse_recovery
 import capacity
+import reconcile_orders
 
 
 def main(argv=None):
@@ -34,6 +35,7 @@ def main(argv=None):
     consumer_recovery.register_parser(scenarios)
     clickhouse_recovery.register_parser(scenarios)
     capacity.register_parser(scenarios)
+    reconcile_orders.register_parser(scenarios)
     args = parser.parse_args(argv)
     return args.handler(args)
 
