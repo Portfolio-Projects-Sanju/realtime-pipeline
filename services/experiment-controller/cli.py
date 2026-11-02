@@ -9,6 +9,7 @@ import debezium
 import redpanda
 import consumer
 import clickhouse
+import debezium_recovery
 
 
 def main(argv=None):
@@ -22,6 +23,7 @@ def main(argv=None):
     redpanda.register_parser(commands)
     consumer.register_parser(commands)
     clickhouse.register_parser(commands)
+    debezium_recovery.register_parser(commands)
     args = parser.parse_args(argv)
     return args.handler(args)
 
