@@ -11,6 +11,7 @@ import consumer
 import clickhouse
 import debezium_recovery
 import redpanda_interruption
+import consumer_recovery
 
 
 def main(argv=None):
@@ -28,6 +29,7 @@ def main(argv=None):
     scenarios = experiments.add_subparsers(dest="experiment_command", required=True)
     debezium_recovery.register_parser(scenarios)
     redpanda_interruption.register_parser(scenarios)
+    consumer_recovery.register_parser(scenarios)
     args = parser.parse_args(argv)
     return args.handler(args)
 

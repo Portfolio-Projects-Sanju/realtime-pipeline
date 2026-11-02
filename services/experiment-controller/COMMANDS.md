@@ -168,3 +168,34 @@ proses dibunuh paksa atau mesin mati, pulihkan manual:
 ```bash
 python3 services/experiment-controller/cli.py --environment dev redpanda resume
 ```
+
+## Eksperimen pemulihan consumer
+
+Pastikan stack dev terisolasi dari production, connector berjalan, consumer group
+sehat, dan traffic order terus masuk selama baseline serta gangguan. Perintah ini
+menghentikan consumer dev secara nyata:
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev experiment consumer-recovery --duration 30 --baseline-duration 30 --recovery-timeout 300 --sample-interval 5
+```
+
+`--group` opsional; default dibaca persis dari container consumer. `--connector`
+memilih nama connector (default `ecommerce-postgres-source`). Semua durasi dalam
+detik. Hasil tersimpan di `logs/consumer-recovery/runs/<run-id>/consumer-recovery-result.json`.
+
+Sampel mencatat offset dan lag tiap partisi. `backlog_growth_offsets` adalah
+kenaikan log-end offset selama gangguan, sedangkan `drain_seconds` adalah waktu
+setelah perintah start selesai sampai offset consumer mencapai target akhir fault.
+Rekonsiliasi membandingkan order sumber yang terlihat selama jendela gangguan
+dengan event create di ClickHouse. Missing adalah order yang belum ditemukan saat
+pemeriksaan; jumlah create lebih dari satu ditandai sebagai kemungkinan duplikasi.
+Hasil ini tidak membuktikan update/delete atau event tabel lain; transaksi yang
+melewati batas snapshot sumber juga bisa tidak tercakup. Tidak ada order baru atau
+tidak ada pertumbuhan backlog menyebabkan eksperimen gagal, bukan lulus kosong.
+
+CLI mencoba memulihkan consumer setelah kegagalan, Ctrl+C, atau SIGTERM. Jika
+proses dibunuh paksa atau mesin mati, pulihkan secara manual:
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev consumer resume
+```
