@@ -199,3 +199,37 @@ proses dibunuh paksa atau mesin mati, pulihkan secara manual:
 ```bash
 python3 services/experiment-controller/cli.py --environment dev consumer resume
 ```
+
+## Eksperimen kegagalan ClickHouse
+
+Pastikan stack dev terisolasi dari production, connector dan consumer sehat, dan
+traffic order terus masuk. Perintah ini menghentikan ClickHouse dev secara nyata:
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev experiment clickhouse-recovery --duration 30 --baseline-duration 30 --recovery-timeout 300 --sample-interval 5
+```
+
+`--group` opsional; default dibaca dari container consumer. `--connector` memilih
+connector (default `ecommerce-postgres-source`). Semua durasi dalam detik. Hasil
+JSON dan `consumer.log` disimpan di
+`logs/clickhouse-recovery/runs/<run-id>/`.
+
+Skenario mencatat offset dan lag per partisi, pertumbuhan backlog, waktu sampai
+consumer mencapai offset target, serta rekonsiliasi order create di ClickHouse.
+`consumer_log_observations` menghitung baris log yang cocok dengan error tulis
+atau kata retry; ini bukan jumlah pasti kegagalan atau retry. Consumer saat ini
+keluar saat penulisan gagal dan Compose dapat me-restart-nya. Perubahan jumlah
+restart container dicatat terpisah dan bukan hitungan retry aplikasi.
+
+Rekonsiliasi terbatas pada order create yang terlihat di PostgreSQL saat jendela
+pengamatan; update/delete, tabel lain, dan transaksi yang commit melewati batas
+snapshot tidak diverifikasi. Missing berarti belum ditemukan saat diperiksa.
+Tidak ada traffic atau pertumbuhan backlog membuat eksperimen gagal.
+
+CLI mencoba memulihkan ClickHouse setelah kegagalan, Ctrl+C, atau SIGTERM. Jika
+proses dibunuh paksa atau mesin mati, pulihkan manual dan periksa consumer:
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev clickhouse resume
+python3 services/experiment-controller/cli.py --environment dev consumer status
+```
