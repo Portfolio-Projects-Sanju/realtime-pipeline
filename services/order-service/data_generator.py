@@ -3,6 +3,7 @@ import csv
 import fcntl
 import os
 import logging
+import math
 import random
 import signal
 import threading
@@ -110,6 +111,9 @@ class TrafficStats:
     def __init__(self):
         self.lock = threading.Lock()
         self.attempted = self.success = self.failed = self.timeout = 0
+        self.latencies = []
+        self.started_at = datetime.now(timezone.utc)
+        self.start_monotonic = time.monotonic()
         self.latency_total = 0.0
         self.latency_min = None
         self.latency_max = 0.0
@@ -118,6 +122,7 @@ class TrafficStats:
         with self.lock:
             self.attempted += 1
             setattr(self, outcome, getattr(self, outcome) + 1)
+            self.latencies.append(latency)
             self.latency_total += latency
             self.latency_min = latency if self.latency_min is None else min(self.latency_min, latency)
             self.latency_max = max(self.latency_max, latency)
@@ -129,18 +134,24 @@ class TrafficStats:
         now = datetime.now(timezone.utc)
         path = log_dir / "traffic.csv"
         average_ms = self.latency_total * 1000 / self.attempted if self.attempted else 0
+        elapsed = time.monotonic() - self.start_monotonic
+        ordered = sorted(self.latencies)
+        def percentile(q):
+            return round(ordered[math.ceil(q * len(ordered)) - 1] * 1000, 3) if ordered else None
         with path.open("a+", newline="", encoding="utf-8") as output:
             fcntl.flock(output, fcntl.LOCK_EX)
             try:
                 columns = ["timestamp", "attempted", "sukses", "gagal", "timeout", "latency",
                            "base_rate_per_second", "duration_seconds", "flash_sale_enabled",
                            "flash_sale_rate_per_second", "flash_sale_interval_seconds",
-                           "flash_sale_duration_seconds", "max_concurrency", "timeout_seconds"]
+                           "flash_sale_duration_seconds", "max_concurrency", "timeout_seconds",
+                           "run_id", "started_at", "actual_duration_seconds", "attempted_rps", "success_rps",
+                           "latency_p50_ms", "latency_p95_ms", "latency_p99_ms"]
                 output.seek(0)
                 reader = csv.DictReader(output)
                 existing_columns = reader.fieldnames
                 if existing_columns and existing_columns != columns:
-                    if existing_columns != columns[:6]:
+                    if existing_columns not in (columns[:6], columns[:14]):
                         raise ValueError("Format CSV traffic tidak dikenal")
                     old_rows = list(reader)
                     output.seek(0)
@@ -164,7 +175,14 @@ class TrafficStats:
                                  "flash_sale_interval_seconds": flash.get("interval_seconds"),
                                  "flash_sale_duration_seconds": flash.get("duration_seconds"),
                                  "max_concurrency": request["max_concurrency"],
-                                 "timeout_seconds": request["timeout_seconds"]})
+                                 "timeout_seconds": request["timeout_seconds"],
+                                 "run_id": os.environ.get("TRAFFIC_RUN_ID", ""),
+                                 "started_at": self.started_at.isoformat(),
+                                 "actual_duration_seconds": round(elapsed, 3),
+                                 "attempted_rps": round(self.attempted / elapsed, 3) if elapsed > 0 else None,
+                                 "success_rps": round(self.success / elapsed, 3) if elapsed > 0 else None,
+                                 "latency_p50_ms": percentile(.50), "latency_p95_ms": percentile(.95),
+                                 "latency_p99_ms": percentile(.99)})
                 output.flush()
             finally:
                 fcntl.flock(output, fcntl.LOCK_UN)

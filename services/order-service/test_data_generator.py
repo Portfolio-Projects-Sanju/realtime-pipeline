@@ -77,6 +77,22 @@ class TestDataGenerator(unittest.TestCase):
         data_generator.generate_traffic(config)
         write_csv.assert_called_once_with(Path("/tmp/traffic-logs"), config)
 
+    def test_percentiles_and_legacy_csv_migration(self):
+        stats = data_generator.TrafficStats()
+        for latency in (0.01, 0.02, 0.03, 0.04):
+            stats.record("success", latency)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "traffic.csv"
+            path.write_text("timestamp,attempted,sukses,gagal,timeout,latency,base_rate_per_second,duration_seconds,flash_sale_enabled,flash_sale_rate_per_second,flash_sale_interval_seconds,flash_sale_duration_seconds,max_concurrency,timeout_seconds\nold,1,1,0,0,5,5,30,False,100,30,2,50,5\n")
+            stats.write_csv(directory, CONFIG)
+            with path.open(newline="", encoding="utf-8") as file:
+                rows = list(csv.DictReader(file))
+            self.assertEqual(rows[0]["latency_p95_ms"], "")
+            self.assertEqual(float(rows[1]["latency_p50_ms"]), 20)
+            self.assertEqual(float(rows[1]["latency_p95_ms"]), 40)
+            self.assertEqual(float(rows[1]["latency_p99_ms"]), 40)
+            self.assertGreater(float(rows[1]["actual_duration_seconds"]), 0)
+
     def test_empty_summary(self):
         with tempfile.TemporaryDirectory() as directory:
             path = data_generator.TrafficStats().write_csv(directory, CONFIG)

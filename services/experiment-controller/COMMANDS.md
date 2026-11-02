@@ -233,3 +233,30 @@ proses dibunuh paksa atau mesin mati, pulihkan manual dan periksa consumer:
 python3 services/experiment-controller/cli.py --environment dev clickhouse resume
 python3 services/experiment-controller/cli.py --environment dev consumer status
 ```
+
+## Capacity run
+
+Bangun ulang image agar generator menggunakan pencatatan terbaru. Hentikan
+traffic-generator dev sebelumnya; pastikan tidak ada generator lain di luar
+Compose. Stack dev dan dependensinya harus sudah berjalan.
+
+```bash
+make docker-build-dev
+python3 services/experiment-controller/cli.py --environment dev traffic stop
+python3 services/experiment-controller/cli.py --environment dev experiment capacity --kind baseline --tps 25 --duration 300
+python3 services/experiment-controller/cli.py --environment dev experiment capacity --kind steady --tps 50 --duration 600
+python3 services/experiment-controller/cli.py --environment dev experiment capacity --kind spike --tps 50 --duration 120 --flash-tps 100 --flash-interval 30 --flash-duration 5
+```
+
+Setiap run membuat folder `logs/capacity/runs/<run-id>/` berisi konfigurasi,
+log dan JSON yang mencatat ringkasan traffic berdasarkan run ID, batas resource
+container, snapshot CPU/memori, serta consumer lag saat tersedia. Statistik traffic
+mencakup durasi aktual, attempted/success RPS, error, timeout, dan latency
+p50/p95/p99 dalam milidetik (nearest-rank, seluruh request termasuk error dan
+ timeout). RPS menggunakan durasi aktual termasuk penyelesaian request tersisa.
+
+Pilih ambang error, latency, dan stabilitas lag sebelum run. Bandingkan beberapa
+run steady yang cukup lama untuk menyatakan throughput yang teruji berkelanjutan;
+run spike hanya menggambarkan puncak sesaat. Ketersediaan metrik yang kurang,
+beban lain pada host, dan penggunaan order service bersama harus dicatat dalam
+analisis. Data run lama tanpa persentil tidak dapat melengkapi persentil run baru.
