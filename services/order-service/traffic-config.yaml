@@ -3,12 +3,12 @@
 
 request:
   # Target menghitung request yang dicoba, bukan transaksi yang berhasil.
-  base_rate_per_second: 5
+  base_rate_per_second: 25
   max_concurrency: 50
   timeout_seconds: 5
 
 flash_sale:
-  enabled: false
+  enabled: true
   interval_seconds: 30
   duration_seconds: 2
   # Menggantikan base_rate_per_second selama flash sale.
@@ -16,4 +16,4 @@ flash_sale:
 
 experiment:
   # null berarti berjalan sampai dihentikan secara manual.
-  duration_seconds: 30
+  duration_seconds: null
