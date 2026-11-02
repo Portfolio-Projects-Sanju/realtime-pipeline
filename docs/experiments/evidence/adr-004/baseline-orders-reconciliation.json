@@ -1,0 +1,21 @@
+{
+  "run_id": "20261102T085401Z-fd88088c",
+  "environment": "dev",
+  "window_start_utc": "2026-11-02T08:54:03.960960+00:00",
+  "window_end_utc": "2026-11-02T08:59:03.992488+00:00",
+  "checked_at": "2026-11-02T09:25:40.535226+00:00",
+  "source_orders": 7472,
+  "limitations": [
+    "Hanya order yang masih ada di sumber dan event create di ClickHouse.",
+    "created_at adalah timestamp awal transaksi; transaksi lintas batas atau data yang dihapus dapat tidak tercakup.",
+    "Lebih dari satu create adalah kandidat duplikasi; bukan identitas event CDC unik."
+  ],
+  "reconciliation": {
+    "status": "complete",
+    "source_orders": 7472,
+    "missing_order_ids": [],
+    "duplicate_create_counts": {},
+    "limitations": "Hanya order yang masih ada di sumber dan event create; update/delete, tabel lain, dan transaksi yang commit terlambat tidak diverifikasi."
+  },
+  "finished_at": "2026-11-02T09:25:44.998727+00:00"
+}
