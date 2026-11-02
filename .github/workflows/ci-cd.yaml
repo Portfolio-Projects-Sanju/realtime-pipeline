@@ -51,6 +51,9 @@ jobs:
         working-directory: services/order-service
         run: python -m unittest discover -v
 
+      - name: Test experiment controller
+        run: python -m unittest discover -s services/experiment-controller -p 'test_*.py' -v
+
   build-pr:
     name: Validate Docker build
     if: github.event_name == 'pull_request'
