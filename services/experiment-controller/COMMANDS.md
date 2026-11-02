@@ -141,3 +141,30 @@ tidak dapat ditangani; bila diperlukan, pulihkan secara manual:
 ```bash
 python3 services/experiment-controller/cli.py --environment dev debezium resume
 ```
+
+## Eksperimen gangguan Redpanda
+
+Pastikan stack dev benar-benar terisolasi dari production, traffic berjalan stabil,
+dan connector serta consumer group sudah sehat. Perintah ini menghentikan broker
+dev secara nyata; jangan digunakan pada stack yang terhubung ke sistem produksi.
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev experiment redpanda-interruption --duration 30 --baseline-duration 30 --recovery-timeout 300 --sample-interval 5 --connector ecommerce-postgres-source --slot ecommerce_debezium_slot
+```
+
+Hasil JSON dan log Debezium serta consumer disimpan di
+`services/experiment-controller/logs/redpanda-interruption/runs/<run-id>/`.
+Nama group otomatis dibaca persis dari container consumer; `--group` dapat digunakan untuk memilih nama lain. Baseline diambil sebelum gangguan. Sampel mencatat status connector, restart
+consumer, WAL backlog, dan consumer-group lag saat tersedia. Saat broker mati,
+consumer lag tidak dapat dibaca dan dicatat sebagai `null`, bukan nol. Jumlah
+baris error/retry adalah pencarian kata pada log, bukan jumlah retry yang pasti.
+
+Pemulihan mensyaratkan broker healthy, connector RUNNING, consumer healthy,
+consumer group Stable, WAL mencapai posisi target saat fault berakhir, dan lag
+tidak melebihi maksimum baseline. Ini tidak membuktikan data sampai ClickHouse.
+CLI mencoba menjalankan broker kembali saat gagal, Ctrl+C, atau SIGTERM. Jika
+proses dibunuh paksa atau mesin mati, pulihkan manual:
+
+```bash
+python3 services/experiment-controller/cli.py --environment dev redpanda resume
+```

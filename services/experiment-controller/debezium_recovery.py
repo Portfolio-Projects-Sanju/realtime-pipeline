@@ -68,9 +68,7 @@ def name(value):
     return value
 
 
-def register_parser(commands):
-    root = commands.add_parser("experiment", help="jalankan eksperimen pipeline dev")
-    actions = root.add_subparsers(dest="experiment_command", required=True)
+def register_parser(actions):
     run = actions.add_parser("debezium-recovery", help="baseline, stop, dan pemulihan Debezium")
     run.add_argument("--duration", type=positive_float, required=True, help="lama gangguan dalam detik")
     run.add_argument("--baseline-duration", type=positive_float, default=30)
