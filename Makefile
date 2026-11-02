@@ -1,6 +1,7 @@
 # 1. Load environment variables
-ifneq (,$(wildcard ./.env))
-    include .env
+ENV_FILE ?= .env
+ifneq (,$(wildcard $(ENV_FILE)))
+    include $(ENV_FILE)
     export
 endif
 
@@ -209,6 +210,11 @@ logs-consumer:
 	# tail 20 lines of logs and follow
 	$(DOCKER_COMPOSE) logs --tail=20 --follow consumer
 
+build-restart-tg:
+	@echo "Building and restarting traffic-generator..."
+	$(DOCKER_COMPOSE) build traffic-generator
+	$(DOCKER_COMPOSE) up -d traffic-generator
+
 restart-tg:
 	@echo "Restarting traffic-generator..."
 	$(DOCKER_COMPOSE) restart traffic-generator
@@ -225,7 +231,7 @@ docker-logs-os:
 	$(DOCKER_COMPOSE) logs order-service
 
 # Jalankan target service yang sama dengan proyek dan port development.
-DEV_SERVICE_TARGETS := order-service-bash init-redpanda init-dbz init-db seed-db generate-traffic clean-db db-shell clickhouse-shell init-clickhouse init-superset resume stop setup-db export-dashboard logs logs-cdc logs-tg logs-consumer restart-tg pause-tg resume-tg docker-logs-os
+DEV_SERVICE_TARGETS := order-service-bash init-redpanda init-dbz init-db seed-db generate-traffic clean-db db-shell clickhouse-shell init-clickhouse init-superset resume stop setup-db export-dashboard logs logs-cdc logs-tg logs-consumer restart-tg pause-tg resume-tg build-restart-tg docker-logs-os
 .PHONY: $(addsuffix -dev,$(DEV_SERVICE_TARGETS))
 $(addsuffix -dev,$(DEV_SERVICE_TARGETS)):
 	$(MAKE) $(@:-dev=) DOCKER_COMPOSE='$(DOCKER_COMPOSE_DEV)' DEBEZIUM_PORT='$(DEBEZIUM_DEV_PORT)' GRAFANA_BASE_URL='http://localhost:$(GRAFANA_DEV_PORT)'

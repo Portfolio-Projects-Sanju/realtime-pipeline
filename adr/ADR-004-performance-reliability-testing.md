@@ -81,3 +81,21 @@ Sebagai contoh, eksperimen consumer dapat menjeda consumer selama periode terten
 ## Penilaian
 
 Kebutuhan pengujian ini layak dipenuhi karena mendukung pembelajaran dan membantu memahami perilaku pipeline ketika beban meningkat atau komponen terganggu. Skrip merupakan titik awal yang sesuai dengan kebutuhan saat ini: eksperimen dapat dirancang dan diulang tanpa terlebih dahulu membangun dashboard. Kebutuhan dashboard dapat dinilai kembali setelah pengalaman menjalankan beberapa skenario.
+
+## Retrospektif dan tinjauan status (2026-11-02)
+
+Implementasi awal menyediakan konfigurasi traffic berbasis YAML, controller dev
+untuk beban dan gangguan komponen, ringkasan traffic, serta hasil run dan contoh
+analisis kapasitas. Eksperimen recovery telah dijalankan pada stack dev;
+[runbook end-to-end](../docs/experiments/adr-004-e2e-runbook.md) menjelaskan
+cara mengulang skenario dan batas rekonsiliasi order.
+
+Keputusan menggunakan skrip/CLI tetap relevan; dashboard belum diperlukan untuk
+membuktikan skenario awal. Namun, bukti end-to-end yang tersedia terbatas pada
+order create yang masih ada di sumber. Identitas event CDC yang stabil untuk
+membuktikan kehilangan dan duplikasi seluruh update/delete belum tersedia;
+metrik delay end-to-end serta penghitungan retry yang pasti juga belum lengkap.
+
+**Tinjauan status:** tetap **Proposed** sampai cakupan pengukuran, ambang
+kelulusan, dan bukti yang diperlukan disepakati dan diverifikasi. Status ini
+bukan penilaian bahwa semua skenario gagal atau bahwa keputusan CLI ditolak.

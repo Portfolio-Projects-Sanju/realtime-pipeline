@@ -1,5 +1,10 @@
 # Gunakan bersama docker-compose.yml dan --env-file ../../.env.
 services:
+  traffic-generator:
+    volumes:
+      - ../../services/order-service/traffic-config.dev.yaml:/app/traffic-config.yaml:ro
+    restart: "no"
+
   postgres-source:
     ports: !override
       - "${POSTGRES_DEV_PORT:?set POSTGRES_DEV_PORT}:5432"

@@ -138,6 +138,9 @@ flowchart LR
 | [ERD Warehouse](docs/erd_warehouse.md) | Entity Relationship Diagram ClickHouse (Bronze/Silver/Gold) |
 | [ADR-001: Migrasi ke Debezium](docs/adr/ADR-001-migration-to-dbz.md) | Keputusan arsitektur migrasi CDC |
 | [Legacy vs Debezium](docs/cdc_legacy_vs_debezium.md) | Perbandingan implementasi pglogrepl lama vs Debezium |
+| [ADR-004: Pengujian Pipeline](adr/ADR-004-performance-reliability-testing.md) | Keputusan dan evaluasi framework eksperimen |
+| [Runbook Eksperimen](docs/experiments/adr-004-e2e-runbook.md) | Skenario, pengukuran, rekonsiliasi & pemulihan |
+| [Analisis Kapasitas](docs/experiments/capacity-analysis.md) | Hasil baseline, steady-state & spike |
 
 ---
 
@@ -163,6 +166,27 @@ make generate-traffic       # Bot transaksi E-Commerce otomatis (real-time testi
 # 4. Monitoring
 make logs-tg                # Lihat log traffic generator
 ```
+
+## Pengujian Performa & Resilience
+
+Framework CLI pada `services/experiment-controller` mengatur traffic sintetis dan menjalankan eksperimen pada stack **dev**. Workload menggunakan YAML untuk target request, durasi, konkurensi, timeout, dan pola flash sale. Skenario mencakup gangguan Debezium, Redpanda, Go consumer, dan ClickHouse, serta pengamatan backlog dan pemulihan.
+
+```bash
+# Siapkan stack dev dan dependensi CLI
+make docker-up-dev
+python3 -m pip install -r services/experiment-controller/requirements.txt
+
+# Jalankan baseline tanpa fault (pastikan generator dev lain berhenti)
+python3 services/experiment-controller/cli.py --environment dev traffic stop
+python3 services/experiment-controller/cli.py --environment dev experiment capacity --kind baseline --tps 25 --duration 300
+
+# Contoh fault: hentikan consumer 30 detik, lalu pulihkan
+python3 services/experiment-controller/cli.py --environment dev experiment consumer-recovery --duration 30
+```
+
+Gunakan fault **hanya pada stack non-production yang terisolasi**. Skenario mencoba memulihkan service setelah gangguan, kegagalan, atau interupsi; jika proses dibunuh paksa atau host mati, periksa dan pulihkan service secara manual. Jangan hapus data atau offset untuk eksperimen.
+
+Hasil run disimpan di `services/experiment-controller/logs/`, termasuk konfigurasi, metrik yang tersedia, dan ringkasan recovery. Pemeriksaan order sumber terhadap ClickHouse tersedia melalui `experiment reconcile-orders`; cakupannya saat ini terbatas pada order `create`, belum seluruh event CDC. Lihat [daftar perintah](services/experiment-controller/COMMANDS.md), [kontrak metrik](docs/experiments/experiment-contract-template.md), dan [bukti eksperimen](docs/experiments/adr-004-e2e-evidence.md) untuk parameter, keterbatasan, dan langkah lengkap.
 
 ## Akses Service
 

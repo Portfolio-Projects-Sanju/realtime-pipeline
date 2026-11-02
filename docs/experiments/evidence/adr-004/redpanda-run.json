@@ -1,0 +1,1606 @@
+{
+  "run_id": "20261102T092613Z-55ff7ae5",
+  "environment": "dev",
+  "project": "realtime-pipeline-dev",
+  "mechanism": "stop/start service redpanda",
+  "started_at": "2026-11-02T09:26:13.151353+00:00",
+  "parameters": {
+    "environment": "dev",
+    "command": "experiment",
+    "experiment_command": "redpanda-interruption",
+    "duration": 10.0,
+    "baseline_duration": 10.0,
+    "recovery_timeout": 180.0,
+    "sample_interval": 5.0,
+    "connector": "ecommerce-postgres-source",
+    "slot": "ecommerce_debezium_slot",
+    "group": "go-consumer-group "
+  },
+  "samples": [
+    {
+      "timestamp": "2026-11-02T09:26:14.109892+00:00",
+      "phase": "baseline",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F454BD8",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 475424
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 9
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 781938,
+            "log_start_offset": 0,
+            "log_end_offset": 781938,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 391026,
+            "log_start_offset": 0,
+            "log_end_offset": 391026,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 782307,
+            "log_start_offset": 0,
+            "log_end_offset": 782307,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:20.006184+00:00",
+      "phase": "baseline",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F480488",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 653776
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 9
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 57,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 782200,
+            "log_start_offset": 0,
+            "log_end_offset": 782222,
+            "lag": 22,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 391154,
+            "log_start_offset": 0,
+            "log_end_offset": 391167,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 782569,
+            "log_start_offset": 0,
+            "log_end_offset": 782591,
+            "lag": 22,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:25.006168+00:00",
+      "phase": "baseline",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F4A64D0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 809496
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 9
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 782462,
+            "log_start_offset": 0,
+            "log_end_offset": 782462,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 391281,
+            "log_start_offset": 0,
+            "log_end_offset": 391281,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 782831,
+            "log_start_offset": 0,
+            "log_end_offset": 782831,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:31.255784+00:00",
+      "phase": "fault",
+      "errors": {
+        "group": "Command '['docker', 'compose', '--env-file', '/home/ubuntu/projects/realtime-pipeline/.env', '-p', 'realtime-pipeline-dev', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.yml', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.dev.yml', 'exec', '-T', 'redpanda', 'rpk', 'group', 'describe', 'go-consumer-group ', '--format', 'json', '-X', 'brokers=redpanda:9092']' returned non-zero exit status 1."
+      },
+      "wal": {
+        "current_lsn": "0/1F4D5920",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1003112
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "starting",
+        "restart_count": 10
+      },
+      "group": null
+    },
+    {
+      "timestamp": "2026-11-02T09:26:36.824898+00:00",
+      "phase": "fault",
+      "errors": {
+        "group": "Command '['docker', 'compose', '--env-file', '/home/ubuntu/projects/realtime-pipeline/.env', '-p', 'realtime-pipeline-dev', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.yml', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.dev.yml', 'exec', '-T', 'redpanda', 'rpk', 'group', 'describe', 'go-consumer-group ', '--format', 'json', '-X', 'brokers=redpanda:9092']' returned non-zero exit status 1."
+      },
+      "wal": {
+        "current_lsn": "0/1F4FD9F0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1167160
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "starting",
+        "restart_count": 10
+      },
+      "group": null
+    },
+    {
+      "timestamp": "2026-11-02T09:26:41.255872+00:00",
+      "phase": "fault_end",
+      "errors": {
+        "group": "Command '['docker', 'compose', '--env-file', '/home/ubuntu/projects/realtime-pipeline/.env', '-p', 'realtime-pipeline-dev', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.yml', '-f', '/home/ubuntu/projects/realtime-pipeline/deployments/docker/docker-compose.dev.yml', 'exec', '-T', 'redpanda', 'rpk', 'group', 'describe', 'go-consumer-group ', '--format', 'json', '-X', 'brokers=redpanda:9092']' returned non-zero exit status 1."
+      },
+      "wal": {
+        "current_lsn": "0/1F51FE20",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1307496
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": null
+    },
+    {
+      "timestamp": "2026-11-02T09:26:42.611007+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F528D08",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1344080
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 782490,
+            "log_start_offset": 0,
+            "log_end_offset": 782490,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 391294,
+            "log_start_offset": 0,
+            "log_end_offset": 391294,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 782859,
+            "log_start_offset": 0,
+            "log_end_offset": 782859,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:52.030830+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F56E1C8",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1627920
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 785163,
+            "log_start_offset": 0,
+            "log_end_offset": 785163,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 392615,
+            "log_start_offset": 0,
+            "log_end_offset": 392615,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 785532,
+            "log_start_offset": 0,
+            "log_end_offset": 785532,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:58.017922+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F5993D0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 1804568
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 785456,
+            "log_start_offset": 0,
+            "log_end_offset": 785456,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 392768,
+            "log_start_offset": 0,
+            "log_end_offset": 392768,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 785825,
+            "log_start_offset": 0,
+            "log_end_offset": 785825,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:04.062489+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F5C9888",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2002384
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 785749,
+            "log_start_offset": 0,
+            "log_end_offset": 785749,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 392908,
+            "log_start_offset": 0,
+            "log_end_offset": 392908,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 786118,
+            "log_start_offset": 0,
+            "log_end_offset": 786118,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:10.180796+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F5F6398",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2185440
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 63,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 786032,
+            "log_start_offset": 0,
+            "log_end_offset": 786057,
+            "lag": 25,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393048,
+            "log_start_offset": 0,
+            "log_end_offset": 393061,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 786401,
+            "log_start_offset": 0,
+            "log_end_offset": 786426,
+            "lag": 25,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:15.887940+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F620538",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2357888
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 786334,
+            "log_start_offset": 0,
+            "log_end_offset": 786334,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393201,
+            "log_start_offset": 0,
+            "log_end_offset": 393201,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 786703,
+            "log_start_offset": 0,
+            "log_end_offset": 786703,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:21.584192+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F64B2A0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2533352
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 65,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 786622,
+            "log_start_offset": 0,
+            "log_end_offset": 786648,
+            "lag": 26,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393341,
+            "log_start_offset": 0,
+            "log_end_offset": 393354,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 786991,
+            "log_start_offset": 0,
+            "log_end_offset": 787017,
+            "lag": 26,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:27.331802+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F674FB0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2704632
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 13,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 786911,
+            "log_start_offset": 0,
+            "log_end_offset": 786915,
+            "lag": 4,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393494,
+            "log_start_offset": 0,
+            "log_end_offset": 393494,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 787275,
+            "log_start_offset": 0,
+            "log_end_offset": 787284,
+            "lag": 9,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:33.048706+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F69F3A0",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 2877672
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 787174,
+            "log_start_offset": 0,
+            "log_end_offset": 787174,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393621,
+            "log_start_offset": 0,
+            "log_end_offset": 393621,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 787543,
+            "log_start_offset": 0,
+            "log_end_offset": 787543,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:38.777964+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F6CA890",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 3055064
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 787477,
+            "log_start_offset": 0,
+            "log_end_offset": 787477,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393773,
+            "log_start_offset": 0,
+            "log_end_offset": 393773,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 787846,
+            "log_start_offset": 0,
+            "log_end_offset": 787846,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:45.061100+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F6F6D50",
+        "confirmed_flush_lsn": "0/1F3E0AB8",
+        "backlog_bytes": 3236504
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 67,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 787763,
+            "log_start_offset": 0,
+            "log_end_offset": 787790,
+            "lag": 27,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 393925,
+            "log_start_offset": 0,
+            "log_end_offset": 393938,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 788132,
+            "log_start_offset": 0,
+            "log_end_offset": 788159,
+            "lag": 27,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:27:51.159716+00:00",
+      "phase": "recovery",
+      "errors": {},
+      "wal": {
+        "current_lsn": "0/1F725158",
+        "confirmed_flush_lsn": "0/1F6F8678",
+        "backlog_bytes": 183008
+      },
+      "connector": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      },
+      "consumer": {
+        "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+        "running": true,
+        "health": "healthy",
+        "restart_count": 10
+      },
+      "group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 29,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 788089,
+            "log_start_offset": 0,
+            "log_end_offset": 788101,
+            "lag": 12,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 394086,
+            "log_start_offset": 0,
+            "log_end_offset": 394091,
+            "lag": 5,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 788458,
+            "log_start_offset": 0,
+            "log_end_offset": 788470,
+            "lag": 12,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-8d5ec06b-3564-4777-a3d9-f361403203d2",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      }
+    }
+  ],
+  "status": "completed",
+  "limitations": [
+    "Lag tidak tersedia saat broker mati; null bukan nol.",
+    "Log adalah bukti respons, bukan penghitung pasti retry atau kehilangan event.",
+    "Status healthy dan offset tidak membuktikan data tiba di ClickHouse.",
+    "Pastikan workload stabil dan stack dev terisolasi dari production."
+  ],
+  "traffic_config": "request:\n  base_rate_per_second: 75.0\n  max_concurrency: 50\n  timeout_seconds: 5\nflash_sale:\n  enabled: false\n  interval_seconds: 30\n  duration_seconds: 2\n  rate_per_second: 400\nexperiment:\n  duration_seconds: 3000.0\n",
+  "baseline_max_consumer_lag": 57,
+  "fault_started_at": "2026-11-02T09:26:25.691286+00:00",
+  "fault_verified": true,
+  "catchup_target_lsn": "0/1F51FE20",
+  "recovery_started_at": "2026-11-02T09:26:41.890096+00:00",
+  "recovery_attempted": true,
+  "service_start_succeeded": true,
+  "recovery_condition": "connector RUNNING, WAL confirmed ke target, dan consumer lag <= maksimum baseline",
+  "pipeline_ready_seconds": 69.771,
+  "broker_after": {
+    "id": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+    "running": true,
+    "health": "healthy",
+    "restart_count": 0
+  },
+  "log_observations": {
+    "debezium": {
+      "lines": 900,
+      "error_lines": 12,
+      "retry_lines": 23
+    },
+    "consumer": {
+      "lines": 262,
+      "error_lines": 0,
+      "retry_lines": 0
+    }
+  },
+  "error": null,
+  "finished_at": "2026-11-02T09:27:52.980648+00:00"
+}

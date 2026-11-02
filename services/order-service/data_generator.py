@@ -1,10 +1,16 @@
 import argparse
+import csv
+import fcntl
+import os
 import logging
+import math
 import random
+import signal
+import threading
 import time
 import requests
 import concurrent.futures
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from faker import Faker
 from sqlalchemy.orm import Session
@@ -99,24 +105,103 @@ def load_traffic_config():
     with config_path.open(encoding="utf-8") as config_file:
         return yaml.safe_load(config_file)
 
-def send_transaction(worker_id: int, timeout_seconds: float):
-    """Fungsi worker tunggal untuk menembak 1 API Call"""
+class TrafficStats:
+    """Thread-safe counters and latency totals for completed requests."""
+
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.attempted = self.success = self.failed = self.timeout = 0
+        self.latencies = []
+        self.started_at = datetime.now(timezone.utc)
+        self.start_monotonic = time.monotonic()
+        self.latency_total = 0.0
+        self.latency_min = None
+        self.latency_max = 0.0
+
+    def record(self, outcome, latency):
+        with self.lock:
+            self.attempted += 1
+            setattr(self, outcome, getattr(self, outcome) + 1)
+            self.latencies.append(latency)
+            self.latency_total += latency
+            self.latency_min = latency if self.latency_min is None else min(self.latency_min, latency)
+            self.latency_max = max(self.latency_max, latency)
+
+    def write_csv(self, log_dir, config):
+        """Save one experiment summary; latency is the mean in milliseconds."""
+        log_dir = Path(log_dir)
+        log_dir.mkdir(parents=True, exist_ok=True)
+        now = datetime.now(timezone.utc)
+        path = log_dir / "traffic.csv"
+        average_ms = self.latency_total * 1000 / self.attempted if self.attempted else 0
+        elapsed = time.monotonic() - self.start_monotonic
+        ordered = sorted(self.latencies)
+        def percentile(q):
+            return round(ordered[math.ceil(q * len(ordered)) - 1] * 1000, 3) if ordered else None
+        with path.open("a+", newline="", encoding="utf-8") as output:
+            fcntl.flock(output, fcntl.LOCK_EX)
+            try:
+                columns = ["timestamp", "attempted", "sukses", "gagal", "timeout", "latency",
+                           "base_rate_per_second", "duration_seconds", "flash_sale_enabled",
+                           "flash_sale_rate_per_second", "flash_sale_interval_seconds",
+                           "flash_sale_duration_seconds", "max_concurrency", "timeout_seconds",
+                           "run_id", "started_at", "actual_duration_seconds", "attempted_rps", "success_rps",
+                           "latency_p50_ms", "latency_p95_ms", "latency_p99_ms"]
+                output.seek(0)
+                reader = csv.DictReader(output)
+                existing_columns = reader.fieldnames
+                if existing_columns and existing_columns != columns:
+                    if existing_columns not in (columns[:6], columns[:14]):
+                        raise ValueError("Format CSV traffic tidak dikenal")
+                    old_rows = list(reader)
+                    output.seek(0)
+                    output.truncate()
+                    writer = csv.DictWriter(output, fieldnames=columns)
+                    writer.writeheader()
+                    writer.writerows(old_rows)
+                elif not existing_columns:
+                    csv.DictWriter(output, fieldnames=columns).writeheader()
+                output.seek(0, os.SEEK_END)
+                request = config["request"]
+                flash = config["flash_sale"]
+                writer = csv.DictWriter(output, fieldnames=columns)
+                writer.writerow({"timestamp": now.isoformat(), "attempted": self.attempted,
+                                 "sukses": self.success, "gagal": self.failed,
+                                 "timeout": self.timeout, "latency": round(average_ms, 3),
+                                 "base_rate_per_second": request["base_rate_per_second"],
+                                 "duration_seconds": config["experiment"]["duration_seconds"],
+                                 "flash_sale_enabled": flash["enabled"],
+                                 "flash_sale_rate_per_second": flash.get("rate_per_second"),
+                                 "flash_sale_interval_seconds": flash.get("interval_seconds"),
+                                 "flash_sale_duration_seconds": flash.get("duration_seconds"),
+                                 "max_concurrency": request["max_concurrency"],
+                                 "timeout_seconds": request["timeout_seconds"],
+                                 "run_id": os.environ.get("TRAFFIC_RUN_ID", ""),
+                                 "started_at": self.started_at.isoformat(),
+                                 "actual_duration_seconds": round(elapsed, 3),
+                                 "attempted_rps": round(self.attempted / elapsed, 3) if elapsed > 0 else None,
+                                 "success_rps": round(self.success / elapsed, 3) if elapsed > 0 else None,
+                                 "latency_p50_ms": percentile(.50), "latency_p95_ms": percentile(.95),
+                                 "latency_p99_ms": percentile(.99)})
+                output.flush()
+            finally:
+                fcntl.flock(output, fcntl.LOCK_UN)
+        return path
+
+
+def send_transaction(worker_id: int, timeout_seconds: float, stats: TrafficStats):
+    """Send one request and record its outcome and elapsed time."""
+    started = time.monotonic()
+    outcome = "failed"
     try:
-        # Timeout penting agar thread tidak nyangkut selamanya jika server melambat
         response = requests.post(API_URL, timeout=timeout_seconds)
-        if response.status_code == 200:
-            res = response.json()
-            # Hanya print sebagian kecil saja agar terminal tidak lag
-            if random.random() < 0.1: 
-                # Perbaikan: Menggunakan 'order_id' sesuai output di main.py
-                order_id = res.get('order_id', 'N/A')
-                logger.info("[Worker-%s] Transaksi sukses -> Order ID: %s", worker_id, order_id)
-        else:
-            if random.random() < 0.05:
-                logger.warning("[Worker-%s] Server busy: %s", worker_id, response.status_code)
-    except Exception as e:
-        if random.random() < 0.01:
-            logger.error("[Worker-%s] Gagal: %s", worker_id, e)
+        outcome = "success" if 200 <= response.status_code < 300 else "failed"
+    except requests.exceptions.Timeout:
+        outcome = "timeout"
+    except requests.exceptions.RequestException as exc:
+        logger.debug("[Worker-%s] Request gagal: %s", worker_id, exc)
+    finally:
+        stats.record(outcome, time.monotonic() - started)
 
 def generate_traffic(config):
     """Fase 2: Menembakkan transaksi menggunakan Thread Pool dengan pola Gelombang"""
@@ -127,6 +212,7 @@ def generate_traffic(config):
     logger.info("Base load: %s request per detik", request_config["base_rate_per_second"])
     logger.info("Tekan Ctrl+C untuk menghentikan")
     
+    stats = TrafficStats()
     # Gunakan thread pool untuk menembakkan request secara konkuren
     with concurrent.futures.ThreadPoolExecutor(max_workers=request_config["max_concurrency"]) as executor:
         started = time.monotonic()
@@ -149,11 +235,16 @@ def generate_traffic(config):
                     continue
                 pending = {future for future in pending if not future.done()}
                 if len(pending) < request_config["max_concurrency"]:
-                    pending.add(executor.submit(send_transaction, len(pending), request_config["timeout_seconds"]))
+                    pending.add(executor.submit(send_transaction, len(pending), request_config["timeout_seconds"], stats))
                 next_request = now + 1 / rate
                 
         except KeyboardInterrupt:
-            logger.info("[TRAFFIC] Simulator dihentikan oleh user")
+            logger.info("[TRAFFIC] Simulator dihentikan")
+    # Executor menunggu seluruh request yang sudah dikirim sebelum ringkasan dicatat.
+    configured_log_dir = os.environ.get("TRAFFIC_LOG_DIR")
+    log_dir = (Path(configured_log_dir) if configured_log_dir
+               else Path(__file__).resolve().parent / "logs")
+    stats.write_csv(log_dir, config)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -163,7 +254,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Perbaiki URL jika dijalankan dari dalam Docker (sebagai service traffic-generator)
-    import os
     if os.getenv("DOCKER_ENV") or os.path.exists("/.dockerenv"):
         API_URL = "http://order-service:8000/simulate/order"
 
@@ -171,6 +261,9 @@ if __name__ == "__main__":
         seed_db()
     elif args.traffic:
         traffic_config = load_traffic_config()
+        def stop_traffic(signum, frame):
+            raise KeyboardInterrupt
+        signal.signal(signal.SIGTERM, stop_traffic)
         generate_traffic(traffic_config)
     else:
         parser.print_help()

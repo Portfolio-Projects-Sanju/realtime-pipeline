@@ -57,3 +57,4 @@ docker-compose.override.yml
 # Generated Debezium connector config (berisi credential, digenerate dari template)
 connectors/postgres-source.json
 
+task.md

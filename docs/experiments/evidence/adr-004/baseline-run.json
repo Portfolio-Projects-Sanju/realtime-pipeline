@@ -1,0 +1,2712 @@
+{
+  "run_id": "20261102T085401Z-fd88088c",
+  "environment": "dev",
+  "project": "realtime-pipeline-dev",
+  "kind": "baseline",
+  "started_at": "2026-11-02T08:54:01.082239+00:00",
+  "status": "completed",
+  "samples": [
+    {
+      "timestamp": "2026-11-02T08:54:02.427504+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.1GB",
+          "CPUPerc": "0.75%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "147.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "600MB / 999MB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "2.07%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.32%",
+          "MemUsage": "316.3MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "792MB / 837MB",
+          "PIDs": "48"
+        },
+        {
+          "BlockIO": "31.9MB / 1.77MB",
+          "CPUPerc": "0.66%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "195MB / 522MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "299MB / 415MB",
+          "CPUPerc": "0.54%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.02%",
+          "MemUsage": "724.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "374MB / 456MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.109MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "234MB / 23.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "87.9MB / 5.88GB",
+          "CPUPerc": "8.90%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "7.88%",
+          "MemUsage": "1.846GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "20.5MB / 23.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 687071,
+            "log_start_offset": 0,
+            "log_end_offset": 687071,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 343618,
+            "log_start_offset": 0,
+            "log_end_offset": 343618,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 687440,
+            "log_start_offset": 0,
+            "log_end_offset": 687440,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:54:19.283665+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.1GB",
+          "CPUPerc": "16.85%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "147.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "601MB / 1GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.21%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.4MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "793MB / 838MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.77MB",
+          "CPUPerc": "1.42%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "196MB / 524MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "301MB / 417MB",
+          "CPUPerc": "1.56%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.03%",
+          "MemUsage": "726.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "376MB / 459MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.45%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.355MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "236MB / 23.5MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "87.9MB / 5.88GB",
+          "CPUPerc": "64.35%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.03%",
+          "MemUsage": "1.879GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "20.8MB / 23.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 75,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 687861,
+            "log_start_offset": 0,
+            "log_end_offset": 687892,
+            "lag": 31,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 344023,
+            "log_start_offset": 0,
+            "log_end_offset": 344036,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 688230,
+            "log_start_offset": 0,
+            "log_end_offset": 688261,
+            "lag": 31,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:54:35.805216+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.11GB",
+          "CPUPerc": "8.27%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "602MB / 1GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.28%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.4MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "794MB / 839MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.78MB",
+          "CPUPerc": "1.65%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "197MB / 526MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "302MB / 420MB",
+          "CPUPerc": "1.54%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.04%",
+          "MemUsage": "728.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "378MB / 462MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.51%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.371MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "238MB / 23.8MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "87.9MB / 5.89GB",
+          "CPUPerc": "40.44%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.05%",
+          "MemUsage": "1.885GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "21MB / 24.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 688656,
+            "log_start_offset": 0,
+            "log_end_offset": 688656,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 344429,
+            "log_start_offset": 0,
+            "log_end_offset": 344429,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 689025,
+            "log_start_offset": 0,
+            "log_end_offset": 689025,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:54:52.328825+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.11GB",
+          "CPUPerc": "8.49%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "603MB / 1GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.51%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.1MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "795MB / 840MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.78MB",
+          "CPUPerc": "1.53%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "197MB / 528MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "304MB / 423MB",
+          "CPUPerc": "1.38%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.05%",
+          "MemUsage": "730.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "380MB / 466MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.69%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.031MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "241MB / 24.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "87.9MB / 6.06GB",
+          "CPUPerc": "39.20%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.20%",
+          "MemUsage": "1.919GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "21.3MB / 24.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 689470,
+            "log_start_offset": 0,
+            "log_end_offset": 689470,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 344847,
+            "log_start_offset": 0,
+            "log_end_offset": 344847,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 689839,
+            "log_start_offset": 0,
+            "log_end_offset": 689839,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:55:08.826394+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.12GB",
+          "CPUPerc": "8.66%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "604MB / 1GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.25%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "313.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "796MB / 841MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.8MB",
+          "CPUPerc": "1.53%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "198MB / 530MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "305MB / 425MB",
+          "CPUPerc": "1.68%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.06%",
+          "MemUsage": "732.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "382MB / 469MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.84%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.527MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "243MB / 24.5MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "87.9MB / 6.25GB",
+          "CPUPerc": "35.98%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.12%",
+          "MemUsage": "1.9GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "21.6MB / 25.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 690288,
+            "log_start_offset": 0,
+            "log_end_offset": 690288,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 345254,
+            "log_start_offset": 0,
+            "log_end_offset": 345254,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 690657,
+            "log_start_offset": 0,
+            "log_end_offset": 690657,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:55:25.473621+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.12GB",
+          "CPUPerc": "11.72%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "605MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.67%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "313.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "797MB / 843MB",
+          "PIDs": "15"
+        },
+        {
+          "BlockIO": "31.9MB / 1.8MB",
+          "CPUPerc": "1.43%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.761GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "199MB / 532MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "307MB / 428MB",
+          "CPUPerc": "1.67%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.07%",
+          "MemUsage": "734.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "383MB / 472MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.23%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.168MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "245MB / 24.8MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "88.9MB / 6.46GB",
+          "CPUPerc": "42.23%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.30%",
+          "MemUsage": "1.942GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "21.9MB / 25.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 691089,
+            "log_start_offset": 0,
+            "log_end_offset": 691089,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 345673,
+            "log_start_offset": 0,
+            "log_end_offset": 345673,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 691458,
+            "log_start_offset": 0,
+            "log_end_offset": 691458,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:55:41.977377+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.13GB",
+          "CPUPerc": "9.46%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.6MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "606MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.60%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.6MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "798MB / 844MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.82MB",
+          "CPUPerc": "1.83%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "200MB / 534MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "308MB / 430MB",
+          "CPUPerc": "8.86%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.07%",
+          "MemUsage": "736.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "385MB / 475MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.43%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.324MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "248MB / 25.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "88.9MB / 6.57GB",
+          "CPUPerc": "49.27%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.30%",
+          "MemUsage": "1.942GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "22.1MB / 26.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 691880,
+            "log_start_offset": 0,
+            "log_end_offset": 691880,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 346078,
+            "log_start_offset": 0,
+            "log_end_offset": 346078,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 692249,
+            "log_start_offset": 0,
+            "log_end_offset": 692249,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:55:58.563704+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.13GB",
+          "CPUPerc": "8.56%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.6MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "607MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.44%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.4MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "799MB / 845MB",
+          "PIDs": "15"
+        },
+        {
+          "BlockIO": "31.9MB / 1.82MB",
+          "CPUPerc": "1.71%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.761GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "201MB / 536MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "309MB / 433MB",
+          "CPUPerc": "1.59%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.08%",
+          "MemUsage": "738.6MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "387MB / 478MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.46%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.25MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "250MB / 25.5MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 6.68GB",
+          "CPUPerc": "38.10%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.43%",
+          "MemUsage": "1.974GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "22.4MB / 26.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 692735,
+            "log_start_offset": 0,
+            "log_end_offset": 692735,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 346496,
+            "log_start_offset": 0,
+            "log_end_offset": 346496,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 693104,
+            "log_start_offset": 0,
+            "log_end_offset": 693104,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:56:15.112240+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.14GB",
+          "CPUPerc": "11.75%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.1MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "608MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.53%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "800MB / 846MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.84MB",
+          "CPUPerc": "1.85%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.761GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "201MB / 538MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "311MB / 435MB",
+          "CPUPerc": "1.53%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.09%",
+          "MemUsage": "740.4MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "389MB / 481MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "3.50%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.926MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "253MB / 25.8MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 6.79GB",
+          "CPUPerc": "33.04%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.45%",
+          "MemUsage": "1.978GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "22.7MB / 27.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 67,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 693560,
+            "log_start_offset": 0,
+            "log_end_offset": 693587,
+            "lag": 27,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 346901,
+            "log_start_offset": 0,
+            "log_end_offset": 346914,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 693929,
+            "log_start_offset": 0,
+            "log_end_offset": 693956,
+            "lag": 27,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:56:31.811016+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.14GB",
+          "CPUPerc": "8.34%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "609MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.74%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "801MB / 847MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.84MB",
+          "CPUPerc": "1.68%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.761GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "202MB / 540MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "312MB / 438MB",
+          "CPUPerc": "1.39%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.10%",
+          "MemUsage": "742.5MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "391MB / 485MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.89%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.062MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "255MB / 26.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 6.92GB",
+          "CPUPerc": "62.69%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.44%",
+          "MemUsage": "1.975GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "23MB / 27.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 694404,
+            "log_start_offset": 0,
+            "log_end_offset": 694404,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 347320,
+            "log_start_offset": 0,
+            "log_end_offset": 347320,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 694773,
+            "log_start_offset": 0,
+            "log_end_offset": 694773,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:56:48.205216+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.15GB",
+          "CPUPerc": "8.45%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "610MB / 1.01GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.07%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "802MB / 848MB",
+          "PIDs": "15"
+        },
+        {
+          "BlockIO": "31.9MB / 1.86MB",
+          "CPUPerc": "1.64%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "203MB / 542MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "314MB / 440MB",
+          "CPUPerc": "2.11%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.10%",
+          "MemUsage": "744.3MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "393MB / 488MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.45%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.844MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "257MB / 26.5MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 7.02GB",
+          "CPUPerc": "65.64%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.43%",
+          "MemUsage": "1.974GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "23.3MB / 28.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 695207,
+            "log_start_offset": 0,
+            "log_end_offset": 695207,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 347727,
+            "log_start_offset": 0,
+            "log_end_offset": 347727,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 695576,
+            "log_start_offset": 0,
+            "log_end_offset": 695576,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:57:04.788674+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.15GB",
+          "CPUPerc": "9.36%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "148.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "611MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "21.17%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "313.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "803MB / 849MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.86MB",
+          "CPUPerc": "1.48%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "204MB / 544MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "315MB / 443MB",
+          "CPUPerc": "1.72%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.11%",
+          "MemUsage": "745.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "395MB / 491MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "4.31%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.652MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "260MB / 26.9MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 7.13GB",
+          "CPUPerc": "37.12%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.41%",
+          "MemUsage": "1.97GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "23.5MB / 28.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 696056,
+            "log_start_offset": 0,
+            "log_end_offset": 696056,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 348145,
+            "log_start_offset": 0,
+            "log_end_offset": 348145,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 696425,
+            "log_start_offset": 0,
+            "log_end_offset": 696425,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:57:21.280459+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.16GB",
+          "CPUPerc": "11.89%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.3MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "612MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.61%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "804MB / 850MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.88MB",
+          "CPUPerc": "2.14%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "205MB / 546MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "316MB / 446MB",
+          "CPUPerc": "2.11%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.12%",
+          "MemUsage": "748.3MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "397MB / 495MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.59%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.664MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "262MB / 27.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 7.24GB",
+          "CPUPerc": "139.12%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.41%",
+          "MemUsage": "1.969GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "23.8MB / 29.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 696849,
+            "log_start_offset": 0,
+            "log_end_offset": 696849,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 348551,
+            "log_start_offset": 0,
+            "log_end_offset": 348551,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 697218,
+            "log_start_offset": 0,
+            "log_end_offset": 697218,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:57:37.783312+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.16GB",
+          "CPUPerc": "8.69%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "614MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "23.14%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.4MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "805MB / 851MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.89MB",
+          "CPUPerc": "1.44%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.761GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "205MB / 549MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "317MB / 448MB",
+          "CPUPerc": "1.73%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.13%",
+          "MemUsage": "750.3MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "399MB / 498MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.42%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.855MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "264MB / 27.5MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.1MB / 7.36GB",
+          "CPUPerc": "39.83%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.39%",
+          "MemUsage": "1.965GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "24.1MB / 29.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 697681,
+            "log_start_offset": 0,
+            "log_end_offset": 697681,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 348970,
+            "log_start_offset": 0,
+            "log_end_offset": 348970,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 698050,
+            "log_start_offset": 0,
+            "log_end_offset": 698050,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:57:54.479221+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.17GB",
+          "CPUPerc": "8.34%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "615MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.19%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "806MB / 852MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.9MB",
+          "CPUPerc": "1.40%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "206MB / 551MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "319MB / 451MB",
+          "CPUPerc": "1.38%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.13%",
+          "MemUsage": "751.5MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "401MB / 501MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.52%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.18MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "267MB / 27.9MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.4MB / 7.45GB",
+          "CPUPerc": "38.42%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.36%",
+          "MemUsage": "1.957GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "24.4MB / 30.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 0,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 698469,
+            "log_start_offset": 0,
+            "log_end_offset": 698469,
+            "lag": 0,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 349375,
+            "log_start_offset": 0,
+            "log_end_offset": 349375,
+            "lag": 0,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 698838,
+            "log_start_offset": 0,
+            "log_end_offset": 698838,
+            "lag": 0,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:58:10.818427+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.17GB",
+          "CPUPerc": "8.82%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "616MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.39%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.2MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "807MB / 853MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.91MB",
+          "CPUPerc": "1.47%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "207MB / 553MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "320MB / 453MB",
+          "CPUPerc": "1.87%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.14%",
+          "MemUsage": "753.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "403MB / 504MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.69%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.238MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "269MB / 28.2MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.8MB / 7.56GB",
+          "CPUPerc": "57.50%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.51%",
+          "MemUsage": "1.993GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "24.7MB / 30.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 61,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 699290,
+            "log_start_offset": 0,
+            "log_end_offset": 699314,
+            "lag": 24,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 349781,
+            "log_start_offset": 0,
+            "log_end_offset": 349794,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 699659,
+            "log_start_offset": 0,
+            "log_end_offset": 699683,
+            "lag": 24,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:58:27.298636+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.17GB",
+          "CPUPerc": "10.98%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.5MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "617MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.55%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.9MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "808MB / 855MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.91MB",
+          "CPUPerc": "1.40%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "208MB / 555MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "322MB / 456MB",
+          "CPUPerc": "1.90%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.15%",
+          "MemUsage": "755.8MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "405MB / 507MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.58%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.387MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "272MB / 28.6MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.8MB / 7.67GB",
+          "CPUPerc": "54.90%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.43%",
+          "MemUsage": "1.974GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "25MB / 31.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 50,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 700128,
+            "log_start_offset": 0,
+            "log_end_offset": 700147,
+            "lag": 19,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 350199,
+            "log_start_offset": 0,
+            "log_end_offset": 350211,
+            "lag": 12,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 700497,
+            "log_start_offset": 0,
+            "log_end_offset": 700516,
+            "lag": 19,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:58:43.829417+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.18GB",
+          "CPUPerc": "9.06%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "618MB / 1.02GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "20.33%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.1MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "809MB / 856MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.93MB",
+          "CPUPerc": "1.84%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "208MB / 557MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "323MB / 458MB",
+          "CPUPerc": "8.37%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.16%",
+          "MemUsage": "758.1MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "407MB / 511MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.44%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.04%",
+          "MemUsage": "8.703MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "274MB / 28.9MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.8MB / 7.82GB",
+          "CPUPerc": "44.64%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.52%",
+          "MemUsage": "1.995GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "25.2MB / 31.7MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 63,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 700951,
+            "log_start_offset": 0,
+            "log_end_offset": 700976,
+            "lag": 25,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 350605,
+            "log_start_offset": 0,
+            "log_end_offset": 350618,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 701320,
+            "log_start_offset": 0,
+            "log_end_offset": 701345,
+            "lag": 25,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "timestamp": "2026-11-02T08:59:00.410971+00:00",
+      "resources": [
+        {
+          "BlockIO": "21.5MB / 1.18GB",
+          "CPUPerc": "8.97%",
+          "Container": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+          "ID": "75f1b2cf3700",
+          "MemPerc": "0.62%",
+          "MemUsage": "149.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-postgres-source-1",
+          "NetIO": "619MB / 1.03GB",
+          "PIDs": "30"
+        },
+        {
+          "BlockIO": "12.3MB / 737kB",
+          "CPUPerc": "19.14%",
+          "Container": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+          "ID": "fadd797ee421",
+          "MemPerc": "1.31%",
+          "MemUsage": "314.6MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-order-service-1",
+          "NetIO": "810MB / 857MB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "31.9MB / 1.93MB",
+          "CPUPerc": "1.50%",
+          "Container": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+          "ID": "cc4b90d83162",
+          "MemPerc": "7.52%",
+          "MemUsage": "1.76GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-debezium-1",
+          "NetIO": "209MB / 559MB",
+          "PIDs": "60"
+        },
+        {
+          "BlockIO": "325MB / 461MB",
+          "CPUPerc": "1.42%",
+          "Container": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+          "ID": "6ea5c91602c0",
+          "MemPerc": "3.17%",
+          "MemUsage": "760.7MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-redpanda-1",
+          "NetIO": "409MB / 514MB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.52%",
+          "Container": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+          "ID": "94ff22982893",
+          "MemPerc": "0.03%",
+          "MemUsage": "8.273MiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-consumer-1",
+          "NetIO": "277MB / 29.3MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "94.8MB / 7.95GB",
+          "CPUPerc": "52.06%",
+          "Container": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+          "ID": "1dbfc34fce93",
+          "MemPerc": "8.48%",
+          "MemUsage": "1.985GiB / 23.41GiB",
+          "Name": "realtime-pipeline-dev-clickhouse-1",
+          "NetIO": "25.5MB / 32.2MB",
+          "PIDs": "829"
+        }
+      ],
+      "consumer_group": {
+        "group_name": "go-consumer-group ",
+        "coordinator_partition": "__consumer_offsets/1",
+        "state": "Stable",
+        "balancer": "cooperative-sticky",
+        "members": 1,
+        "coordinator_node": 0,
+        "total_lag": 65,
+        "partitions": [
+          {
+            "partition": 0,
+            "current_offset": 701820,
+            "log_start_offset": 0,
+            "log_end_offset": 701846,
+            "lag": 26,
+            "topic": "ecommerce.public.order_items",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 351024,
+            "log_start_offset": 0,
+            "log_end_offset": 351037,
+            "lag": 13,
+            "topic": "ecommerce.public.orders",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 702189,
+            "log_start_offset": 0,
+            "log_end_offset": 702215,
+            "lag": 26,
+            "topic": "ecommerce.public.products",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          },
+          {
+            "partition": 0,
+            "current_offset": 1001,
+            "log_start_offset": 0,
+            "log_end_offset": 1001,
+            "lag": 0,
+            "topic": "ecommerce.public.users",
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4"
+          }
+        ],
+        "members_details": [
+          {
+            "member_id": "my-go-consumer-7eeb8806-4374-4650-adea-3accec926438",
+            "client_id": "my-go-consumer",
+            "host": "172.18.0.4",
+            "topic_partitions": []
+          }
+        ]
+      },
+      "errors": {}
+    }
+  ],
+  "limitations": [
+    "CPU dan memori adalah snapshot docker stats; bukan profil penuh resource.",
+    "Latensi traffic mencakup request gagal dan timeout; persentil memakai nearest-rank.",
+    "Sustainable capacity memerlukan beberapa run stabil dan ambang yang ditentukan operator.",
+    "Generator lain di luar project Compose tidak dapat dideteksi otomatis."
+  ],
+  "resource_constraints": {
+    "postgres-source": {
+      "image_id": "sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    },
+    "order-service": {
+      "image_id": "sha256:00f26752f1ae0602af970ebb87d282117569bcf28c6993aade98ffd07bc74691",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    },
+    "debezium": {
+      "image_id": "sha256:698f0559e667a242f962221079e75917b2b7a3ad4de62661e977628da0e33b45",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    },
+    "redpanda": {
+      "image_id": "sha256:ae0a858eddd0538dacbba5696f9be1f590de1fe51283964afc85f5510fa8f32e",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    },
+    "consumer": {
+      "image_id": "sha256:903dca9e2d67aad1f0f6ffed437c573e277286168fa2093f3907a2db8678057b",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    },
+    "clickhouse": {
+      "image_id": "sha256:537014a67ce8bf1f5c79c2e2b26fb30b8285a86ffff03875bb14ed17ea35db62",
+      "memory_bytes": 0,
+      "nano_cpus": 0,
+      "cpu_quota": 0,
+      "cpu_period": 0,
+      "cpuset_cpus": ""
+    }
+  },
+  "config": {
+    "request": {
+      "base_rate_per_second": 25.0,
+      "max_concurrency": 50,
+      "timeout_seconds": 5
+    },
+    "flash_sale": {
+      "enabled": false,
+      "interval_seconds": 30,
+      "duration_seconds": 5,
+      "rate_per_second": 400
+    },
+    "experiment": {
+      "duration_seconds": 300.0
+    }
+  },
+  "services": {
+    "postgres-source": {
+      "id": "75f1b2cf3700aaf671056528c985ed0ba510038d078e24e4242e71d1c1304cad",
+      "running": true,
+      "health": "healthy",
+      "restart_count": 0
+    },
+    "order-service": {
+      "id": "fadd797ee42163a874f58f24c5cfd27f057b200931e305f101df4a8c5d9cbe96",
+      "running": true,
+      "health": "healthy",
+      "restart_count": 0
+    },
+    "debezium": {
+      "id": "cc4b90d831624dfc5ed0c440d52c46e9bbe3c1f4a441daafbb930214a4415b17",
+      "running": true,
+      "health": null,
+      "restart_count": 0
+    },
+    "redpanda": {
+      "id": "6ea5c91602c04e16298ccdff1a94b68359c1ccceaccd9851d22705a061e4dfb3",
+      "running": true,
+      "health": "healthy",
+      "restart_count": 0
+    },
+    "consumer": {
+      "id": "94ff229828937c8e807fa4f4dcfa371e0e993add54a841682199c4a400b510e2",
+      "running": true,
+      "health": "healthy",
+      "restart_count": 9
+    },
+    "clickhouse": {
+      "id": "1dbfc34fce93a830f0611084a40c715b97573dec40090e6191c701b286e3f40e",
+      "running": true,
+      "health": null,
+      "restart_count": 0
+    }
+  },
+  "consumer_group": "go-consumer-group ",
+  "traffic_summary": {
+    "timestamp": "2026-11-02T08:59:03.992488+00:00",
+    "attempted": "7472",
+    "sukses": "7472",
+    "gagal": "0",
+    "timeout": "0",
+    "latency": "15.753",
+    "base_rate_per_second": "25.0",
+    "duration_seconds": "300.0",
+    "flash_sale_enabled": "False",
+    "flash_sale_rate_per_second": "400",
+    "flash_sale_interval_seconds": "30",
+    "flash_sale_duration_seconds": "5",
+    "max_concurrency": "50",
+    "timeout_seconds": "5",
+    "run_id": "20261102T085401Z-fd88088c",
+    "started_at": "2026-11-02T08:54:03.960960+00:00",
+    "actual_duration_seconds": "300.032",
+    "attempted_rps": "24.904",
+    "success_rps": "24.904",
+    "latency_p50_ms": "13.864",
+    "latency_p95_ms": "25.189",
+    "latency_p99_ms": "38.12"
+  },
+  "finished_at": "2026-11-02T08:59:17.062890+00:00",
+  "error": null
+}

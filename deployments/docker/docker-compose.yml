@@ -36,8 +36,10 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-source:5432/${POSTGRES_DB}
+      TRAFFIC_LOG_DIR: /app/logs
     volumes:
       - ../../services/order-service:/app
+      - ../../services/order-service/logs:/app/logs
     ports:
       - "8000:8000"
     depends_on:
@@ -61,6 +63,9 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-source:5432/${POSTGRES_DB}
       PYTHONUNBUFFERED: 1
+      TRAFFIC_LOG_DIR: /app/logs
+    volumes:
+      - ../../services/order-service/logs:/app/logs
     command: ["python", "data_generator.py", "--traffic"]
     depends_on:
       order-service:

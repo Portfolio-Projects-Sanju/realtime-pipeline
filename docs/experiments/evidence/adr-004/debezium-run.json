@@ -1,0 +1,443 @@
+{
+  "run_id": "20261102T092400Z-5f453ffd",
+  "environment": "dev",
+  "compose_project": "realtime-pipeline-dev",
+  "mechanism": "stop/start Compose service debezium",
+  "started_at": "2026-11-02T09:24:00.259682+00:00",
+  "parameters": {
+    "duration_seconds": 10.0,
+    "baseline_duration_seconds": 10.0,
+    "recovery_timeout_seconds": 180.0,
+    "sample_interval_seconds": 5.0,
+    "connector": "ecommerce-postgres-source",
+    "slot": "ecommerce_debezium_slot"
+  },
+  "limitations": [
+    "WAL backlog diukur dalam byte; bukan CDC delay dalam detik atau latency end-to-end.",
+    "Baseline adalah observasi sebelum gangguan; kestabilan workload harus diverifikasi operator.",
+    "Recovery WAL tidak membuktikan data sudah tiba di ClickHouse."
+  ],
+  "samples": [
+    {
+      "timestamp": "2026-11-02T09:24:01.134433+00:00",
+      "phase": "baseline",
+      "current_lsn": "0/1F0131F8",
+      "confirmed_flush_lsn": "0/1EF46790",
+      "backlog_bytes": 838248,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:24:06.340422+00:00",
+      "phase": "baseline",
+      "current_lsn": "0/1F03AB90",
+      "confirmed_flush_lsn": "0/1EF46790",
+      "backlog_bytes": 1000448
+    },
+    {
+      "timestamp": "2026-11-02T09:24:11.325674+00:00",
+      "phase": "baseline",
+      "current_lsn": "0/1F061520",
+      "confirmed_flush_lsn": "0/1EF46790",
+      "backlog_bytes": 1158544
+    },
+    {
+      "timestamp": "2026-11-02T09:24:19.231904+00:00",
+      "phase": "fault",
+      "current_lsn": "0/1F09A570",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 223312
+    },
+    {
+      "timestamp": "2026-11-02T09:24:24.457686+00:00",
+      "phase": "fault",
+      "current_lsn": "0/1F10BAB8",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 687512
+    },
+    {
+      "timestamp": "2026-11-02T09:24:29.232289+00:00",
+      "phase": "fault_end",
+      "current_lsn": "0/1F135AA0",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 859520
+    },
+    {
+      "timestamp": "2026-11-02T09:24:30.601367+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F140958",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 904248
+    },
+    {
+      "timestamp": "2026-11-02T09:24:36.114795+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F16B368",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 1078856
+    },
+    {
+      "timestamp": "2026-11-02T09:24:42.260121+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F197B58",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 1261112
+    },
+    {
+      "timestamp": "2026-11-02T09:24:47.729146+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F1BD808",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 1415912
+    },
+    {
+      "timestamp": "2026-11-02T09:24:53.005776+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F1E58C0",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 1579936
+    },
+    {
+      "timestamp": "2026-11-02T09:24:58.323262+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F20CEB0",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 1741200
+    },
+    {
+      "timestamp": "2026-11-02T09:25:05.123647+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F250890",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2018160,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:11.203095+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F2797C8",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2185896,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:16.582472+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F2A3190",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2356336,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:22.096258+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F2CA528",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2517000,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:27.331005+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F2F3620",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2685184,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:32.828827+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F31DED0",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 2859440,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:38.248794+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F345E00",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 3023072,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:43.590531+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F36E688",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 3189096,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:49.011843+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F393BA0",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 3341952,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:54.236106+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F3BAF10",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 3502576,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:25:59.468139+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F3E2EA8",
+      "confirmed_flush_lsn": "0/1F063D20",
+      "backlog_bytes": 3666312,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T09:26:04.727616+00:00",
+      "phase": "recovery",
+      "current_lsn": "0/1F40E778",
+      "confirmed_flush_lsn": "0/1F3E0AB8",
+      "backlog_bytes": 187584,
+      "connector_status": {
+        "name": "ecommerce-postgres-source",
+        "connector": {
+          "state": "RUNNING",
+          "worker_id": "172.18.0.11:8083",
+          "version": "3.6.0.Final"
+        },
+        "tasks": [
+          {
+            "id": 0,
+            "state": "RUNNING",
+            "worker_id": "172.18.0.11:8083",
+            "version": "3.6.0.Final"
+          }
+        ],
+        "type": "source"
+      }
+    }
+  ],
+  "status": "completed",
+  "recovery_attempted": true,
+  "traffic_config": "request:\n  base_rate_per_second: 75.0\n  max_concurrency: 50\n  timeout_seconds: 5\nflash_sale:\n  enabled: false\n  interval_seconds: 30\n  duration_seconds: 2\n  rate_per_second: 400\nexperiment:\n  duration_seconds: 3000.0\n",
+  "fault_started_at": "2026-11-02T09:24:11.515595+00:00",
+  "fault_verified": true,
+  "catchup_target_lsn": "0/1F135AA0",
+  "recovery_started_at": "2026-11-02T09:24:29.399779+00:00",
+  "service_start_succeeded": true,
+  "catchup_seconds": 94.418,
+  "connector_status_after": {
+    "name": "ecommerce-postgres-source",
+    "connector": {
+      "state": "RUNNING",
+      "worker_id": "172.18.0.11:8083",
+      "version": "3.6.0.Final"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "state": "RUNNING",
+        "worker_id": "172.18.0.11:8083",
+        "version": "3.6.0.Final"
+      }
+    ],
+    "type": "source"
+  },
+  "comparison": {
+    "baseline_max_wal_backlog_bytes": 1158544,
+    "fault_max_wal_backlog_bytes": 859520,
+    "difference_bytes": -299024
+  },
+  "finished_at": "2026-11-02T09:26:04.893276+00:00"
+}

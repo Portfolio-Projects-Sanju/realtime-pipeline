@@ -2,11 +2,9 @@ name: CI/CD Realtime Pipeline
 
 on:
   push:
-    # Branch ini akan menjalankan test, build, dan deploy jika berhasil.
-    branches: [main, develop, feat/*]
+    branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -22,6 +20,7 @@ env:
 jobs:
   test:
     name: Test
+    if : github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main') 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -52,14 +51,26 @@ jobs:
         working-directory: services/order-service
         run: python -m unittest discover -v
 
+      - name: Test experiment controller
+        run: python -m unittest discover -s services/experiment-controller -p 'test_*.py' -v
+
+  build-pr:
+    name: Validate Docker build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04-arm
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Build images with Docker Compose
+        run: docker compose -p realtime-ci -f deployments/docker/docker-compose.yml build consumer order-service superset
+
   build:
     name: Build and Push Docker
     # VPS menggunakan ARM64; image harus dibangun untuk arsitektur yang sama.
     runs-on: ubuntu-24.04-arm
-    needs: test
-
-    # PR hanya menjalankan test; build dan push berjalan setelah push/manual.
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     permissions:
       contents: read
@@ -152,4 +163,17 @@ jobs:
             -f deployments/docker/docker-compose.yml \
             -f deployments/docker/docker-compose.production.yml \
             up -d --no-build
+
+          # Inisialisasi hanya sekali; beberapa langkah menulis data dan dashboard.
+          (
+            flock -x 9
+            if [ -f /opt/realtime-pipeline-project/.initialized ]; then
+              echo "Pipeline sudah diinisialisasi; melewati inisialisasi."
+            else
+              export ENV_FILE=/opt/realtime-pipeline-project/.env
+              export DOCKER_COMPOSE="docker compose --project-name realtime-pipeline --env-file $ENV_FILE -f deployments/docker/docker-compose.yml -f deployments/docker/docker-compose.production.yml"
+              bash deployments/init-pipeline.sh
+              touch /opt/realtime-pipeline-project/.initialized
+            fi
+          ) 9>/opt/realtime-pipeline-project/.init.lock
           REMOTE

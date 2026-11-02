@@ -1,0 +1,11 @@
+request:
+  base_rate_per_second: 100.0
+  max_concurrency: 50
+  timeout_seconds: 5
+flash_sale:
+  enabled: false
+  interval_seconds: 30
+  duration_seconds: 2
+  rate_per_second: 400
+experiment:
+  duration_seconds: 30.0
