@@ -1,81 +1,59 @@
-# Experiment Contract, Metrics & Acceptance Criteria
+# Kontrak eksperimen, metrik, dan kriteria penerimaan
 
-**ADR:** [ADR-004](../../adr/ADR-004-performance-reliability-testing.md)  
-**Task:** 1/9  
-**Parent epic:** DAS-1  
-**Status:** rancangan; parameter dan ambang harus disepakati sebelum eksperimen.
+**ADR:** [ADR-004](../../adr/ADR-004-performance-reliability-testing.md)
+**Task:** DAS-2 / ADR-004 Task 1/9
+**Status:** ambang awal untuk eksperimen dev, ditetapkan 2026-11-02 sebelum baseline baru. Nilai ini adalah estimasi berdasarkan run sebelumnya, bukan SLO produksi atau kapasitas maksimum.
 
-## Informasi eksperimen
+## Kondisi awal dan workload
 
-- **Nama:** baseline beban order pipeline.
-- **Tujuan:** mengukur perilaku pipeline PostgreSQL → Debezium → Redpanda → Go Consumer → ClickHouse tanpa gangguan.
-- **Hipotesis:** pada beban dasar yang dipilih, pipeline memproses order dan meneruskan perubahan CDC ke ClickHouse. Kemampuan dan batasnya ditentukan dari pengukuran.
-- **Lingkungan:** pilih dan catat lingkungan non-production secara eksplisit sebelum eksperimen.
-- **Kondisi awal:** service sehat, schema dan data awal tersedia, connector terdaftar, serta hanya satu traffic generator aktif. Catat versi, kapasitas, konfigurasi, dan backlog awal.
+Pipeline: PostgreSQL → Debezium → Redpanda → Go consumer → ClickHouse. Gunakan hanya project non-production `realtime-pipeline-dev` yang telah diverifikasi terisolasi, termasuk database, broker, volume, network, dan endpoint. Pastikan schema dan data produk tersedia, connector dan task RUNNING, broker serta consumer sehat, sink dapat diakses, tidak ada fault, dan hanya satu generator aktif. Catat versi image, batas resource, timestamp, dan lag awal. Jangan mengosongkan data atau mengubah offset untuk eksperimen ini.
 
-## Skema konfigurasi workload
+Baseline memakai target **25 request/detik**, durasi **300 detik**, maksimum 50 request bersamaan, timeout 5 detik, dan flash sale nonaktif. Setelah traffic berakhir, beri waktu sampai 120 detik untuk rekonsiliasi. Spike dan recovery adalah skenario terpisah dengan konfigurasi dan waktu pengamatan yang dicatat.
 
-Skema mengikuti `services/order-service/traffic-config.yaml`. Nilai eksperimen ditetapkan sebelum eksekusi; nilai di file bukan otomatis kriteria kelulusan.
-
-| Parameter | Tipe | Satuan | Arti |
-| --- | --- | --- | --- |
-| `request.base_rate_per_second` | angka | request/detik | Target laju dasar request yang dicoba. |
-| `request.max_concurrency` | integer | request | Batas request yang berjalan bersamaan. |
-| `request.timeout_seconds` | angka | detik | Timeout request. |
-| `flash_sale.enabled` | boolean | — | Mengaktifkan flash sale. |
-| `flash_sale.interval_seconds` | angka | detik | Interval antarawal flash sale. |
-| `flash_sale.duration_seconds` | angka | detik | Durasi flash sale. |
-| `flash_sale.rate_per_second` | angka | request/detik | Target laju selama flash sale, menggantikan laju dasar. |
-| `experiment.duration_seconds` | angka atau null | detik | Durasi eksperimen; `null` berarti hingga dihentikan manual. |
-
-## Workload dan penjadwalan
-
-Target mengacu pada **request yang dicoba**, bukan transaksi sukses. Penjadwalan menggunakan waktu untuk laju dasar dan flash sale; target adalah beban yang diupayakan, bukan jaminan throughput. Catat target serta laju aktual dan hindari generator tambahan yang berjalan bersamaan.
-
-Satu request order dapat menghasilkan beberapa perubahan CDC. Jumlah request, transaksi sukses, dan event CDC tidak dapat dibandingkan satu banding satu tanpa menetapkan jenis event dan unit pengukuran.
-
-## Definisi dan metode pengukuran metrik
-
-Berikut adalah kontrak pengukuran yang diusulkan untuk memenuhi ADR; ketersediaan instrumentasi dan timestamp harus diverifikasi sebelum eksperimen. Gunakan jendela pengukuran dan identitas event yang konsisten, serta catat sumber dan keterbatasannya.
-
-| Metrik | Definisi dan metode | Satuan / sumber |
+| Konfigurasi YAML | Tipe / satuan | Makna |
 | --- | --- | --- |
-| Attempted RPS | Jumlah request yang benar-benar dicoba dibagi durasi jendela. Bedakan target yang terlewat karena batas konkurensi dari request yang dicoba. | request/detik; counter generator. |
-| Successful TPS | Jumlah request yang menghasilkan transaksi order sukses dibagi durasi jendela. Catat respons gagal dan timeout; timeout tidak membuktikan transaksi tidak terjadi. | transaksi/detik; counter generator dan data order sumber untuk rekonsiliasi. |
-| Latency request | Selisih waktu mulai request hingga respons diterima; laporkan distribusi dan timeout secara terpisah. | milidetik; pengukuran generator. |
-| Source-to-sink lag | Selisih waktu event tercatat pada sumber dan waktu event yang sama tersedia di sink. Definisikan titik timestamp, identitas event, dan sink; pastikan jam dapat dibandingkan. | detik; metadata CDC dan pengamatan ClickHouse. |
-| Loss | Setelah masa tunggu pemulihan yang ditentukan, bandingkan event sumber yang diharapkan dengan event sink berdasarkan identitas event yang stabil. Catat yang belum ditemukan dan batas pengamatan. | jumlah dan proporsi; rekonsiliasi sumber–sink. |
-| Duplication | Hitung kemunculan berlebih untuk identitas event yang sama di sink, sesuai semantik pemrosesan. Jangan anggap beberapa perubahan sah pada satu record sebagai duplikasi. | jumlah dan proporsi; identitas event di sink. |
-| Consumer lag dan pemulihan | Amati backlog atau consumer lag dan waktu sampai kembali ke tingkat yang ditentukan setelah gangguan. | pesan/offset dan detik; metrik broker/consumer. |
+| `request.base_rate_per_second` | angka positif, request/detik | Target laju request yang dicoba. |
+| `request.max_concurrency` | integer positif | Maksimum request bersamaan. |
+| `request.timeout_seconds` | angka positif, detik | Timeout request. |
+| `flash_sale.enabled` | boolean | Aktifkan pola spike. |
+| `flash_sale.interval_seconds` | angka positif, detik | Interval antarmulai spike. |
+| `flash_sale.duration_seconds` | angka positif, detik | Lama spike; tidak melebihi interval. |
+| `flash_sale.rate_per_second` | angka positif, request/detik | Target selama spike menggantikan laju dasar. |
+| `experiment.duration_seconds` | angka positif atau null, detik | Durasi traffic; null berjalan sampai dihentikan. |
 
-Generator saat ini belum menyediakan seluruh counter, timestamp, korelasi, dan metrik tersebut. Sampling log keberhasilan/kegagalan tidak cukup untuk menghitung total yang akurat; jangan menyatakan loss atau duplikasi nol tanpa data rekonsiliasi yang memadai.
+Penjadwalan generator berbasis waktu; target tidak menjamin request terkirim atau sukses. Satu order menghasilkan beberapa perubahan CDC, sehingga RPS order tidak sama dengan event CDC per detik.
 
-## Eksperimen baseline
+## Definisi dan metode
 
-1. Pilih lingkungan non-production, catat kondisi awal dan konfigurasi, lalu pastikan hanya satu generator aktif.
-2. Tentukan laju dasar, konkurensi, timeout, durasi, jendela pengukuran, dan masa tunggu pemulihan. Nonaktifkan flash sale untuk baseline; uji spike sebagai skenario terpisah.
-3. Tentukan ambang lulus/gagal sebelum menjalankan traffic. Jalankan tanpa gangguan yang disengaja.
-4. Kumpulkan throughput, latency, source-to-sink lag, loss, dan duplikasi; catat konfigurasi serta hasil agar dapat diulang.
-5. Hentikan traffic, tunggu pemrosesan sesuai masa yang ditentukan, dan lakukan rekonsiliasi sumber–sink.
+| Metrik | Definisi, metode, dan batas |
+| --- | --- |
+| Attempted RPS | Jumlah request yang benar-benar dicoba dibagi durasi aktual generator, termasuk waktu menunggu request terakhir selesai. Target yang terlewat tidak dihitung sebagai attempted. |
+| Successful TPS | Respons HTTP 2xx dibagi durasi aktual; ini proksi order sukses, bukan verifikasi independen commit untuk request timeout. Timeout dicatat terpisah karena hasil transaksinya tidak pasti. |
+| Latency request | Waktu dari mulai request sampai respons/error. p50/p95/p99 dihitung nearest-rank dalam ms atas seluruh request selesai, termasuk gagal dan timeout; tidak sama dengan latency CDC. |
+| Consumer lag | Jumlah offset tertinggal yang dilaporkan `rpk group describe` per partisi; sampel saat tersedia, bukan jumlah order. Data tak tersedia bukan nol. |
+| Source-to-sink lag | Selisih saat suatu event sumber terjadi dan event yang sama tersedia di sink. **Belum terinstrumentasi:** membutuhkan identitas event stabil, timestamp sumber dan waktu observasi sink yang dapat dibandingkan. WAL backlog byte dan consumer lag bukan penggantinya. |
+| Missing/loss | `reconcile-orders` membandingkan ID order yang masih ada di PostgreSQL dalam jendela run dengan event create di `orders_history` setelah masa tunggu. ID belum ditemukan adalah missing pada waktu periksa, bukan bukti loss permanen. Update/delete, tabel lain, order yang dihapus, dan transaksi yang melewati batas snapshot belum dicakup. |
+| Duplication | Untuk cakupan yang sama, lebih dari satu baris create per ID order dilaporkan sebagai kandidat duplikasi. Pembuktian duplikasi seluruh event butuh identitas stabil seperti topic/partition/offset; beberapa perubahan sah pada satu ID bukan otomatis duplikat. |
+| Resource | Snapshot `docker stats` CPU dan memori per container beserta batas Docker dan image ID pada run; sampel bukan puncak pasti, dan CPU Docker dapat melebihi 100%. |
+| Recovery | Untuk fault, catat waktu fault, pemulihan service, status connector, target offset/WAL, dan waktu sampai target tercapai. Kriteria berbeda dari latency end-to-end dan belum membuktikan seluruh CDC aman. |
 
-**Nilai baseline dan hasil:** belum ditentukan; isi setelah parameter disepakati dan pengukuran dilakukan.
+## Kriteria awal baseline 25 RPS / 300 detik
 
-## Kriteria lulus atau gagal
+Angka berikut **estimasi yang dipilih sebelum run baru**, bukan persyaratan produksi. Jendela metrik traffic adalah durasi aktual run; lag diambil dari sampel run; rekonsiliasi dilakukan hingga 120 detik setelah run. Tidak ada pengukuran berarti **tidak dapat disimpulkan**, bukan nol.
 
-ADR tidak menetapkan ambang numerik. Isi tabel sebelum eksperimen; hasil tanpa data yang memadai dinyatakan **tidak dapat disimpulkan**, bukan lulus.
+| Metrik | Lulus | Gagal / tidak dapat disimpulkan |
+| --- | --- | --- |
+| Attempted RPS | ≥ 24 request/detik, dengan attempted > 0 | < 24 gagal; counter/durasi tidak tersedia: tidak dapat disimpulkan. |
+| Successful TPS | ≥ 24 respons sukses/detik dan ≥ 99% dari attempted | Di bawah salah satu batas gagal; tanpa counter: tidak dapat disimpulkan. |
+| Error dan timeout | Total gagal + timeout ≤ 1% attempted | > 1% gagal; timeout tetap transaksi berstatus tidak pasti. |
+| Request p95 | ≤ 100 ms | > 100 ms gagal; tanpa sampel latency: tidak dapat disimpulkan. p50/p99 tetap dilaporkan. |
+| Consumer lag | Setidaknya dua sampel valid, maksimum ≤ 500 offset dan sampel akhir ≤ 200 offset | Melebihi batas gagal; sampel kurang/tidak tersedia: tidak dapat disimpulkan. |
+| Order create missing | ≥ 1 ID sumber yang diperiksa dan 0 belum ditemukan dalam 120 detik | Ada yang belum ditemukan pada batas waktu: gagal untuk cakupan ini; tidak ada ID/data: tidak dapat disimpulkan. |
+| Kandidat duplikasi create | 0 ID dengan lebih dari satu create dalam cakupan yang sama | Ada kandidat: gagal untuk cakupan ini dan perlu investigasi; tidak ada data: tidak dapat disimpulkan. |
+| Source-to-sink lag dan seluruh event CDC | Tidak ada ambang kelulusan yang dapat diverifikasi saat ini | **Tidak dapat disimpulkan** sampai instrumentasi event dan timestamp tersedia. |
 
-| Metrik | Ambang dan jendela terukur | Lulus | Gagal |
-| --- | --- | --- | --- |
-| Attempted RPS / successful TPS | Belum ditentukan | Memenuhi ambang yang disepakati | Tidak memenuhi ambang yang disepakati |
-| Latency | Belum ditentukan | Memenuhi ambang persentil yang disepakati | Melebihi ambang yang disepakati |
-| Source-to-sink lag | Belum ditentukan | Memenuhi ambang yang disepakati | Melebihi ambang yang disepakati |
-| Loss | Belum ditentukan | Memenuhi batas hasil rekonsiliasi | Melebihi batas hasil rekonsiliasi |
-| Duplication | Belum ditentukan | Memenuhi batas hasil rekonsiliasi | Melebihi batas hasil rekonsiliasi |
-| Pemulihan setelah fault | Belum ditentukan; untuk skenario fault | Kembali ke kondisi yang ditentukan dalam batas waktu | Tidak kembali dalam batas waktu |
+Keseluruhan **lulus terbatas** hanya jika semua metrik terukur di atas lulus; cakupan source-to-sink latency dan seluruh event CDC tetap tidak dapat disimpulkan. Hasil **gagal** jika salah satu metrik terukur gagal; jika tidak ada yang gagal tetapi data wajib tidak lengkap, **tidak dapat disimpulkan**. Tidak ada ambang recovery tunggal yang ditentukan untuk baseline tanpa fault; untuk setiap fault, pilih dan catat batas recovery sebelum run.
 
-## Keselamatan dan pemulihan
+## Pelaksanaan dan keselamatan
 
-- Jalankan fault hanya pada lingkungan **non-production yang dipilih dan diverifikasi secara eksplisit**; catat nama proyek, service, dan target sebelum tindakan.
-- Untuk skenario gangguan, catat kondisi awal, hipotesis, komponen dan durasi fault, metrik, serta kriteria lulus sebelum menjalankannya.
-- Rencanakan langkah untuk melanjutkan atau memulihkan setiap service yang terdampak, termasuk jika eksperimen berhenti atau gagal.
-- Setelah fault, pulihkan service dan verifikasi status, backlog, serta pemulihan aliran data. Contoh ADR: jeda Go Consumer, amati backlog bertambah, lanjutkan consumer, dan amati backlog berkurang.
+Ikuti [baseline](01-baseline.md) dan [runbook end-to-end](adr-004-e2e-runbook.md). Baseline tidak menyuntikkan fault. Fault hanya pada environment non-production yang dipilih dan diverifikasi; catat kondisi awal, hentikan hanya target, pulihkan service yang sebelumnya berjalan, dan verifikasi connector, broker, consumer serta sink. Ctrl+C/SIGTERM mencoba cleanup; setelah SIGKILL atau mesin mati lakukan recovery manual. Jangan menganggap status container saja sebagai bukti aliran data atau konsistensi.
